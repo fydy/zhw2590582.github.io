@@ -17,7 +17,7 @@ const config = {
     author: {
       name: "老赵茶馆",
       title: "一枚前端攻城狮",
-      description: "Hi, 老赵其实不老, 就这样..."
+      description: "Hi, 老赵其实不老, 就这样...<br/>QQ群：320881312"
     },
     baidutongji: '6878b56ee36c990a8330d8bc412ede91',
     gitting: {
