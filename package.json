@@ -1,0 +1,31 @@
+{
+  "name": "island-cli-init",
+  "version": "1.0.0",
+  "description": "Island blog initialization framework",
+  "main": "index.js",
+  "scripts": {
+    "start": "island dev",
+    "build": "island build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhw2590582/island-cli-init.git"
+  },
+  "keywords": [
+    "island",
+    "blog",
+    "cli",
+    "init"
+  ],
+  "authors": [
+    "Harvey Zack <laozhaochaguan@gmail.com>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zhw2590582/island-cli-init/issues"
+  },
+  "homepage": "https://github.com/zhw2590582/island-cli-init#readme",
+  "dependencies": {
+    "island-cli": "^1.0.8"
+  }
+}

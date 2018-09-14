@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <title>_(web.title)</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0,minimal-ui">
+        <meta name="keywords" content="_(web.keywords)">
+        <meta name="description" content="_(web.description)">
+        <link rel="shortcut icon" href="_(dev.publicPath)static/img/favicon.ico">
+    </head>
+    <body>
+        <!-- wrapper 开始 -->
+        <div class="wrapper">
+            <!-- header 开始 -->
+            <header class="header">
+                <div class="container clearfix">
+                    <a class="logo fl" href="/">
+                        <img src="_(dev.publicPath)static/img/logo.png" alt="logo">
+                    </a>
+                    <div class="menu fl mobile-hide">_(web.menus)</div>
+                    <div class="search-tool fr">
+                        <input type="text" class="search-input" placeholder="Search..." maxlength="100">
+                        <a href="#" class="search-btn icon-magnifier"></a>
+                    </div>
+                </div>
+            </header>
+            <!-- header 结束 -->
+            <div class="mobile-menu mobile-show">
+                <div class="container clearfix">
+                    _(web.menus)
+                </div>
+            </div>
