@@ -1,7 +1,7 @@
 {
-  "name": "i-am-sleepy",
+  "name": "zhw2590582.github.io",
   "version": "1.0.0",
-  "description": "I am sleepy",
+  "description": "个人博客",
   "scripts": {
     "start": "cross-env NODE_ENV=development node ./src/script/serve.js",
     "build": "cross-env NODE_ENV=production node ./src/script/build.js",
@@ -12,15 +12,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zhw2590582/I-am-sleepy.git"
+    "url": "git+https://github.com/zhw2590582/zhw2590582.github.io"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "blog"
+  ],
+  "author": "Harvey Zack <laozhaochaguan@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zhw2590582/I-am-sleepy/issues"
+    "url": "https://github.com/zhw2590582/zhw2590582.github.io/issues"
   },
-  "homepage": "https://github.com/zhw2590582/I-am-sleepy#readme",
+  "homepage": "https://github.com/zhw2590582/zhw2590582.github.io#readme",
   "devDependencies": {
     "@babel/core": "^7.1.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
