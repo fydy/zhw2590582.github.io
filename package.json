@@ -1,7 +1,7 @@
 {
   "name": "zhw2590582.github.io",
   "version": "1.0.0",
-  "description": "个人博客",
+  "description": "blog",
   "scripts": {
     "start": "cross-env NODE_ENV=development node ./src/script/serve.js",
     "build": "cross-env NODE_ENV=production node ./src/script/build.js",
@@ -23,7 +23,7 @@
     "url": "https://github.com/zhw2590582/zhw2590582.github.io/issues"
   },
   "homepage": "https://github.com/zhw2590582/zhw2590582.github.io#readme",
-  "devDependencies": {
+  "dependencies": {
     "@babel/core": "^7.1.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
