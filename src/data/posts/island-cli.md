@@ -1,3 +1,13 @@
+<!---
+{
+    "title": "island-cli 使用说明",
+    "type": "default",
+    "poster": "static/img/2018-08/islnad-cli.png",
+    "topic": "island-cli",
+    "sticky": false
+}
+-->
+
 ## Github  
 [https://github.com/zhw2590582/island-cli](https://github.com/zhw2590582/island-cli)
 

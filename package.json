@@ -1,31 +1,63 @@
 {
-  "name": "island-cli-init",
+  "name": "i-am-sleepy",
   "version": "1.0.0",
-  "description": "Island blog initialization framework",
-  "main": "index.js",
+  "description": "I am sleepy",
   "scripts": {
-    "start": "island dev",
-    "build": "island build"
+    "start": "cross-env NODE_ENV=development node ./src/script/serve.js",
+    "build": "cross-env NODE_ENV=production node ./src/script/build.js",
+    "add": "node ./src/script/add.js",
+    "del": "node ./src/script/del.js",
+    "reset": "node ./src/script/reset.js",
+    "ci": "node ./src/script/ci.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zhw2590582/island-cli-init.git"
+    "url": "git+https://github.com/zhw2590582/I-am-sleepy.git"
   },
-  "keywords": [
-    "island",
-    "blog",
-    "cli",
-    "init"
-  ],
-  "authors": [
-    "Harvey Zack <laozhaochaguan@gmail.com>"
-  ],
+  "keywords": [],
+  "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zhw2590582/island-cli-init/issues"
+    "url": "https://github.com/zhw2590582/I-am-sleepy/issues"
   },
-  "homepage": "https://github.com/zhw2590582/island-cli-init#readme",
-  "dependencies": {
-    "island-cli": "^1.0.8"
+  "homepage": "https://github.com/zhw2590582/I-am-sleepy#readme",
+  "devDependencies": {
+    "@babel/core": "^7.1.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@prakriya/reload4-html-webpack-plugin": "^1.0.2",
+    "@sindresorhus/slugify": "^0.3.0",
+    "autoprefixer": "^9.1.5",
+    "babel-loader": "^8.0.2",
+    "chalk": "^2.4.1",
+    "cross-env": "^5.2.0",
+    "css-loader": "^1.0.0",
+    "dayjs": "^1.7.5",
+    "file-loader": "^2.0.0",
+    "filemanager-webpack-plugin": "^2.0.5",
+    "fs-extra": "^7.0.0",
+    "glob": "^7.1.3",
+    "he": "^1.1.1",
+    "html-layout-webpack-plugin": "^1.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "import-fresh": "^2.0.0",
+    "inquirer": "^6.2.0",
+    "markdown-it": "^8.4.2",
+    "markdownit-loader": "^2.0.0",
+    "mini-css-extract-plugin": "^0.4.3",
+    "node-sass": "^4.9.3",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "postcss-loader": "^3.0.0",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^7.1.0",
+    "simple-i18n-webpack-plugin": "^1.0.7",
+    "simple-progress-webpack-plugin": "^1.1.2",
+    "style-loader": "^0.23.0",
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "url-loader": "^1.1.1",
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-serve": "^2.0.2",
+    "write-json": "^3.0.1"
   }
 }

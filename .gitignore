@@ -1,8 +1,8 @@
 node_modules
 .vscode
-.tmp
 .DS_Store
 *.log
+build
 dist
 backup
 package-lock.json

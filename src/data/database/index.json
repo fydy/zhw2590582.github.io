@@ -1,38 +1,37 @@
 {
   "posts": [
     {
+      "title": "island-cli 使用说明",
+      "type": "default",
+      "poster": "/static/img/2018-08/islnad-cli.png",
+      "topic": "island-cli",
+      "sticky": false,
+      "name": "island-cli",
+      "excerpt": "Githubhttps://github.com/zhw2590582/island-cli简介首先 island-cli 是一个生成静态博客的命令行工具，工具本身的命令很少，主旨用来把静态网页托管于github pages上。然后这...",
+      "link": "/post.html?name=island-cli",
+      "creatDate": "2018-09-20 20:41:07"
+    },
+    {
       "title": "写日志的心态",
-      "type": "",
-      "poster": "https://cdn.zhw-island.com/static/img/2018-09/read-book.jpg",
+      "type": "default",
+      "poster": "/static/img/2018-09/read-book.jpg",
       "topic": "日常",
       "sticky": false,
       "name": "read-book",
       "excerpt": "我老是在纠结，纠结我该怎么静下心来写日志，后来慢慢体会到其实对于我来说，写日志和读书是一样道理，目前我还没到达的状态，那种可以在慵懒的午后，可以安安静静的看起书来的状态，我多久没好好的看完一本书了？起码有四五年了，那应该刚好是我毕业以...",
       "link": "/post.html?name=read-book",
-      "creatDate": "2018-09-10 22:12:46"
+      "creatDate": "2018-09-20 20:40:56"
     },
     {
       "title": "再见，wordpress",
-      "type": "",
-      "poster": "https://cdn.zhw-island.com/static/img/2018-08/wordpress3.jpeg",
+      "type": "default",
+      "poster": "/static/img/2018-08/wordpress3.jpeg",
       "topic": "wordpress",
       "sticky": false,
       "name": "bye-wordpress",
       "excerpt": "以前折腾wordpress好几年，其实我并不喜欢写博客，而是喜欢开发博客，通常一年不会写几篇文章。wordpress是我学习前端开发的契机，期间写了五个wordpress主题，后来发现越往后越不心思去折腾。终究原因是wordpress...",
       "link": "/post.html?name=bye-wordpress",
-      "creatDate": "2018-08-26 15:38:39"
-    },
-    {
-      "title": "island-cli 使用说明",
-      "style": "wide",
-      "poster": "https://cdn.zhw-island.com/static/img/2018-08/islnad-cli.png",
-      "topic": "island-cli",
-      "sticky": true,
-      "name": "island-cli",
-      "excerpt": "Githubhttps://github.com/zhw2590582/island-cli简介首先 island-cli 是一个生成静态博客的命令行工具，工具本身的命令很少，主旨用来把静态网页托管于github pages上。然后这...",
-      "link": "/post.html?name=island-cli",
-      "creatDate": "2018-08-25 20:56:13",
-      "type": ""
+      "creatDate": "2018-09-20 20:39:07"
     }
   ]
 }
