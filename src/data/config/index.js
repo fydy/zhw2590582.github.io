@@ -18,7 +18,7 @@ const config = {
       title: "老赵茶馆",
       keywords: "老赵, 茶馆, 前端, 代码, 扯淡, 音乐, 电影, 分享",
       description: "老赵茶馆，日常扯淡",
-      copyright: '© 2018 All Rights Reserved. 粤ICP备15035931号-1. 托管于 GitHub. 阿里云 提供 CDN 服务. 由 <a href="https://github.com/zhw2590582/sleepy">Sleepy</a> 驱动.'
+      copyright: '© 2018 All Rights Reserved. 粤ICP备15035931号-1. 阿里云 提供 CDN 服务. 托管于 <a href="https://github.com/zhw2590582/zhw2590582.github.io">GitHub</a>.'
     },
     author: {
       name: "老赵茶馆",
