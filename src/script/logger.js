@@ -1,6 +1,6 @@
 const chalk = require('chalk');
 const format = require('util').format;
-const prefix = 'sleepy';
+const prefix = 'Island';
 const sep = chalk.gray('·');
 
 exports.log = function(...args) {
