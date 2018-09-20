@@ -7,12 +7,10 @@ env:
   - NODE_ENV=production
 
 before_script:
-  - ls
   - npm install
-  - ls
 
 script:
-  - npm run ci
+  - npm run travis
 
 branches:
   only:

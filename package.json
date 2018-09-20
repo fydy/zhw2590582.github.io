@@ -8,7 +8,7 @@
     "add": "node ./src/script/add.js",
     "del": "node ./src/script/del.js",
     "reset": "node ./src/script/reset.js",
-    "ci": "node ./src/script/ci.js"
+    "travis": "node ./src/script/travis.js"
   },
   "repository": {
     "type": "git",
