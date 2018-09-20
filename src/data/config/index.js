@@ -7,26 +7,23 @@ const config = {
   dev: {
     port: 3000,
     outputPath: path.join(process.cwd(), "./"),
-    publicPath: isProd ? "https://cdn.zhw-island.com/" : "/"
+    publicPath: isProd ? "https://cdn.zhw-island.com/" : "/",
+    asyncImport: false
   },
-  web: {
-    title: "老赵茶馆",
-    keywords: "老赵, 茶馆, 前端, 代码, 扯淡, 音乐, 电影, 分享",
-    description: "老赵茶馆，日常扯淡",
-    copyright: "© 2018 All Rights Reserved. 粤ICP备15035931号-1. 托管于 GitHub. 阿里云 提供 CDN 服务. 由 <a href=\"https://github.com/zhw2590582/island-cli\">Island</a> 驱动.",
+  website: {
+    pageName(page){
+      return page.replace('.html', '')
+    },
+    seo: {
+      title: "老赵茶馆",
+      keywords: "老赵, 茶馆, 前端, 代码, 扯淡, 音乐, 电影, 分享",
+      description: "老赵茶馆，日常扯淡",
+      copyright: '© 2018 All Rights Reserved. 粤ICP备15035931号-1. 托管于 GitHub. 阿里云 提供 CDN 服务. 由 <a href="https://github.com/zhw2590582/sleepy">Sleepy</a> 驱动.'
+    },
     author: {
       name: "老赵茶馆",
       title: "一枚前端攻城狮",
       description: "Hi, 老赵其实不老, 就这样...<br/>QQ群：320881312"
-    },
-    baidutongji: '6878b56ee36c990a8330d8bc412ede91',
-    gitting: {
-      clientID: '2fa6841ea796af21b439',
-      clientSecret: '4e2196768a4ce9ce143bf2b2ba378efcbd8081f8',
-      repo: 'zhw2590582.github.io',
-      owner: 'zhw2590582',
-      admin: ['zhw2590582'],
-      id: 'message'
     },
     post: {
       excerpt: 120,
@@ -34,6 +31,15 @@ const config = {
       posterSize: 28,
       relatedPost: 3
     },
+    gitting: {
+      clientID: "2fa6841ea796af21b439",
+      clientSecret: "4e2196768a4ce9ce143bf2b2ba378efcbd8081f8",
+      repo: "zhw2590582.github.io",
+      owner: "zhw2590582",
+      admin: ["zhw2590582"],
+      id: "message"
+    },
+    baidutongji: "6878b56ee36c990a8330d8bc412ede91",
     menus: [
       {
         name: "关于",

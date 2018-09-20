@@ -3,7 +3,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/zh-cn';
 dayjs.extend(relativeTime);
 dayjs.locale('zh-cn');
-import { web, dev, theme } from "../../../../data/config";
+import { website, dev, theme } from "../../../../data/config";
 
 // 判读是否手机环境
 export function isMobile() {
@@ -86,7 +86,7 @@ export function infiniteScroll(callback) {
 
 // 设置标题
 export function setTitle(subTitle, callback) {
-  window.document.title = `${subTitle} - ${web.title}`;
+  window.document.title = `${subTitle} - ${website.seo.title}`;
   callback && callback();
 }
 
@@ -118,7 +118,7 @@ export function themePath(url) {
 // 随机特色图
 export function creatPoster() {
   const randomIntegerInRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-  return dev.publicPath + themePath(`/img/poster/img${randomIntegerInRange(1, web.post.posterSize)}.png`);
+  return dev.publicPath + themePath(`/img/poster/img${randomIntegerInRange(1, website.post.posterSize)}.png`);
 }
 
 // 判断滚动方向

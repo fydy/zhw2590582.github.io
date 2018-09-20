@@ -10,7 +10,7 @@ before_script:
   - npm install
 
 script:
-  - island ci
+  - npm run ci
 
 branches:
   only:

@@ -1,3 +1,4 @@
+import Highway from '@dogstudio/highway/build/es5/highway';
 import loading from 'app-loading';
 import "app-loading/app-loading.min.css";
 import "highlight.js/styles/github.css";
