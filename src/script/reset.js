@@ -15,10 +15,9 @@ inquirer
   ])
   .then(answers => {
     if (answers.ok) {
-      glob
-        .sync(path.join(dataPath().posts, "*.md"))
-        .forEach(item => fs.removeSync(item));
+      cleanPost();
       resetDb();
+      cleanImg();
       creatInitPost();
       logger.success(`Reset successful!`);
     }
@@ -27,17 +26,28 @@ inquirer
     logger.fatal(err);
   });
 
+function cleanPost() {
+  glob.sync(path.join(dataPath().posts, "*.md")).forEach(item => fs.removeSync(item));
+}
+
+function cleanImg() {
+  glob.sync(glob.sync(path.join(process.cwd(), "static/img/*"))).filter(item => {
+    return path.basename(item) !== 'default';
+  }).forEach(item => fs.removeSync(item));
+}
+
 function creatInitPost() {
   const postDir = path.join(dataPath().posts, "hello-world.md");
-  fs.writeFileSync(postDir, `<!---
-{
-    "title": "Hello World",
-    "type": "default",
-    "poster": "",
-    "topic": "hello, world",
-    "sticky": false
-}
--->
+  fs.writeFileSync(postDir, `
+  <!---
+  {
+      "title": "Hello World",
+      "type": "default",
+      "poster": "",
+      "topic": "hello, world",
+      "sticky": false
+  }
+  -->
 
-Welcome to Sleepy. This is your first post. Edit or delete it and start blogging!`);
+  Welcome to Sleepy. This is your first post. Edit or delete it and start blogging!`);
 }
