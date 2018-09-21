@@ -3,7 +3,7 @@
     {
       "title": "island-cli 使用说明",
       "type": "default",
-      "poster": "/static/img/2018-08/islnad-cli.png",
+      "poster": "https://cdn.zhw-island.com/static/img/2018-08/islnad-cli.png",
       "topic": "island-cli",
       "sticky": false,
       "name": "island-cli",
@@ -14,7 +14,7 @@
     {
       "title": "写日志的心态",
       "type": "default",
-      "poster": "/static/img/2018-09/read-book.jpg",
+      "poster": "https://cdn.zhw-island.com/static/img/2018-09/read-book.jpg",
       "topic": "日常",
       "sticky": false,
       "name": "read-book",
@@ -25,7 +25,7 @@
     {
       "title": "再见，wordpress",
       "type": "default",
-      "poster": "/static/img/2018-08/wordpress3.jpeg",
+      "poster": "https://cdn.zhw-island.com/static/img/2018-08/wordpress3.jpeg",
       "topic": "wordpress",
       "sticky": false,
       "name": "bye-wordpress",
