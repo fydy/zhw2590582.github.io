@@ -11,17 +11,17 @@ const $archiveList = document.querySelector(".archive-page .content");
 let posts = [];
 
 if (search !== 'undefined') {
-    posts = window.database.posts.filter(item => {
+    posts = __database__.posts.filter(item => {
         return item.title.toLowerCase().includes(search) || item.excerpt.toLowerCase().includes(search) || item.topic.toLowerCase().includes(search); 
     });
     $archiveHeader.innerHTML = `搜索：${search}`
 } else if (topic !== 'undefined') {
-    posts = window.database.posts.filter(item => {
+    posts = __database__.posts.filter(item => {
         return item.topic.toLowerCase().includes(topic);
     });
     $archiveHeader.innerHTML = `话题：${topic}`
 } else {
-    posts = window.database.posts;
+    posts = __database__.posts;
     $archiveHeader.innerHTML = `全部文章`
 }
 

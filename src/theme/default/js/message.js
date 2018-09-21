@@ -3,8 +3,7 @@ import { setTitle } from "./utils";
 import "../sass/pages";
 import "../sass/message";
 import "gitting/dist/gitting.css";
-import { website } from "../../../data/config"
 
 setTitle('留言');
-const gitting = new Gitting(website.gitting);
+const gitting = new Gitting(__config__.website.gitting);
 gitting.render('#gitting-container');

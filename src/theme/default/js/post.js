@@ -1,8 +1,7 @@
 import mediumZoom from 'medium-zoom';
-import { website } from "../../../data/config";
 import { getURLParameters, scrollDirection, relative, setTitle, creatPoster, scrollFixed, smoothScroll, isMobile } from "./utils";
 const { name } = getURLParameters();
-const relatedPost = website.post.relatedPost;
+const relatedPost = __config__.website.post.relatedPost;
 
 const $header = document.querySelector('.header');
 const $page = document.querySelector('.post-page');
@@ -13,7 +12,7 @@ const $related = document.querySelector(".post-page .post-related");
 const $nav = document.querySelector(".post-page .post-nav");
 const $navList = document.querySelector(".post-page .post-nav .nav-list");
 
-const metaData = window.database.posts.find(item => item.name === name);
+const metaData = __database__.posts.find(item => item.name === name);
 setTitle(metaData.title);
 $title.innerHTML = metaData.title;
 $mata.innerHTML = metaData.topic.split(',').map(item => {
@@ -35,7 +34,7 @@ import(/* webpackChunkName: "post" */ `../../../data/posts/${name}.md`)
 
 let relatedHtml = [];
 const searchTopic = metaData.topic.split(',')[0].trim();
-window.database.posts.some((item, index) => {
+__database__.posts.some((item, index) => {
   const topics = item.topic.split(',').map(item => item.trim());
   if (topics.indexOf(searchTopic) > -1 && item.name !== metaData.name) {
     relatedHtml.push(`

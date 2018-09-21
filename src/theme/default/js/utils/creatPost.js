@@ -1,7 +1,6 @@
 import loading from 'app-loading';
-import config from "../../../../data/config";
 import { creatPoster, relative, isMobile } from "./index";
-const pageSize = config.website.post.pageSize;
+const pageSize = __config__.website.post.pageSize;
 
 export default function creatPost(selector, page, posts) {
     const el = document.querySelector(selector);

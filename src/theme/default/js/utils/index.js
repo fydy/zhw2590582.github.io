@@ -3,7 +3,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/zh-cn';
 dayjs.extend(relativeTime);
 dayjs.locale('zh-cn');
-import { website, dev, theme } from "../../../../data/config";
+const { website, dev, theme } = __config__;
 
 // 判读是否手机环境
 export function isMobile() {

@@ -7,8 +7,6 @@ import '../fonts/style.css';
 import "../sass/utils/tui-editor-contents.css";
 import "../sass/utils/mobile.scss";
 import { scrollFixed, creatPoster, isMobile } from "./utils/index";
-import database from '../../../data/database/index.json';
-window.database = database;
 
 if (isMobile()) {
     document.querySelector('body').classList.add('mobile');
@@ -56,7 +54,7 @@ if (!isMobile()) {
 const topicEl = document.querySelector(".widget.topic .content");
 if (topicEl && !isMobile()) {
     const topicObj = {};
-    window.database.posts.forEach(post => {
+    __database__.posts.forEach(post => {
         post.topic.split(',').forEach(item => {
             if (topicObj[item]) {
                 topicObj[item] += 1;
@@ -74,7 +72,7 @@ if (topicEl && !isMobile()) {
 // 近期文章
 const recentEl = document.querySelector(".widget.recent .content");
 if (recentEl && !isMobile()) {
-    const recentHtml = window.database.posts.slice(0, 5).map(post => {
+    const recentHtml = __database__.posts.slice(0, 5).map(post => {
         return `
             <div class="recent-item flex">
                 <a class="poster" href="/post.html?name=${encodeURIComponent(post.name)}" title="${post.name}" style="background-image: url(${post.poster || creatPoster()});"></a>

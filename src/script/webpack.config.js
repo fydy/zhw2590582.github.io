@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const SimpleI18nWebpackPlugin = require("simple-i18n-webpack-plugin");
 const HtmlLayoutWebpackPlugin = require("html-layout-webpack-plugin");
@@ -112,19 +113,23 @@ const webpackConfig = {
       language: configPath,
       beforeCreate: beforeConfigCreate
     }),
+    new webpack.ProvidePlugin({
+      "__config__": configPath,
+      "__database__": path.join(dataPath().database, 'index.json')
+    }),
     new MyWebpackPlugin()
   ]
 };
 
 htmlList().forEach(item => {
   if (!config.dev.asyncImport) {
-    Object.assign(webpackConfig.entry, item.chunk)
+    webpackConfig.entry[item.chunkName] = item.chunkPath;
   }
   webpackConfig.plugins.unshift(
     new HtmlWebpackPlugin({
       filename: item.filename,
       template: item.template,
-      chunks: ["vendor", "common", config.dev.asyncImport ? '' : item.chunks],
+      chunks: ["vendor", "common", config.dev.asyncImport ? '' : item.chunkName],
       minify: isProd
         ? {
             removeComments: true,
