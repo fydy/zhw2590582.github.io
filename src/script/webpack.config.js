@@ -30,6 +30,12 @@ const webpackConfig = {
     filename: isProd ? "static/js/[name]-[hash].js" : "static/js/[name].js",
     publicPath: config.dev.publicPath
   },
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+      name: "vendor"
+    }
+  },
   module: {
     rules: [
       {
@@ -118,7 +124,7 @@ htmlList().forEach(item => {
     new HtmlWebpackPlugin({
       filename: item.filename,
       template: item.template,
-      chunks: config.dev.asyncImport ? [] : item.chunks,
+      chunks: ["vendor", "common", config.dev.asyncImport ? '' : item.chunks],
       minify: isProd
         ? {
             removeComments: true,

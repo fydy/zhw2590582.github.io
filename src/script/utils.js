@@ -31,14 +31,14 @@ exports.htmlList = function() {
   const pages = exports.themePath().pages;
   return glob.sync(path.join(pages, "*.html")).map(item => {
     const filename = path.basename(item).toLowerCase();
-    const chunkname = filename.replace(".html", "");
+    const chunk = filename.replace(".html", "");
     return {
       filename: filename,
       template: path.resolve(item),
       chunk: {
-        [chunkname]: path.join(exports.themePath().js, `${chunkname}.js`)
+        [chunk]: path.join(exports.themePath().js, `${chunk}.js`)
       },
-      chunks: ["common", chunkname],
+      chunks: chunk
     };
   });
 };
