@@ -1,6 +1,17 @@
 {
   "posts": [
     {
+      "title": "博客小结",
+      "type": "",
+      "poster": "https://cdn.zhw-island.com/static/img/2018-09/blog-summary.png",
+      "topic": "日常",
+      "sticky": false,
+      "name": "blog-summary",
+      "excerpt": "博客地址：https://github.com/zhw2590582/zhw2590582.github.io最近又在重构网站框架，也考虑过用next.js或者nuxt.js这类框架搭建会省事很多，但这样也学不了什么了。之前做法是用c...",
+      "link": "/post.html?name=blog-summary",
+      "creatDate": "2018-09-24 03:49:01"
+    },
+    {
       "title": "island-cli 使用说明",
       "type": "default",
       "poster": "https://cdn.zhw-island.com/static/img/2018-08/islnad-cli.png",
