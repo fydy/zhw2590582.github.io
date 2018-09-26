@@ -14,6 +14,7 @@ function creatApi() {
             const query = Object.assign({}, baseQuery, {
                 per_page: post.pageSize,
                 page: page,
+                labels: 'post',
                 t: (new Date).getTime()
             })
             return request('get', `${issuesApi}?${queryStringify(query)}`, null, {
