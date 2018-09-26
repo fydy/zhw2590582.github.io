@@ -28,16 +28,14 @@ const config = {
     post: {
       excerpt: 120,
       pageSize: 5,
-      posterSize: 28,
       relatedPost: 3
     },
-    gitting: {
+    github: {
       clientID: "2fa6841ea796af21b439",
       clientSecret: "4e2196768a4ce9ce143bf2b2ba378efcbd8081f8",
       repo: "zhw2590582.github.io",
       owner: "zhw2590582",
-      admin: ["zhw2590582"],
-      id: "message"
+      admin: ["zhw2590582"]
     },
     baidutongji: "6878b56ee36c990a8330d8bc412ede91",
     menus: [
