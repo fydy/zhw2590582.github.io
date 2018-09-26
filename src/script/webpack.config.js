@@ -9,12 +9,10 @@ const Reload4Plugin = require("@prakriya/reload4-html-webpack-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 const FileManagerPlugin = require("filemanager-webpack-plugin");
-const MyWebpackPlugin = require('./MyWebpackPlugin');
 const autoprefixer = require("autoprefixer");
-const { themePath, dataPath, htmlList, beforeConfigCreate, cleanFiles } = require("./utils");
+const { configPath, themePath, getConfig, htmlList, cleanFiles } = require("./utils");
 const theme = themePath();
-const configPath = dataPath().config;
-const config = require(configPath);
+const config = getConfig();
 const isProd = process.env.NODE_ENV === "production";
 
 const webpackConfig = {
@@ -89,15 +87,6 @@ const webpackConfig = {
             }
           }
         ]
-      },
-      {
-        test: /\.md$/,
-        use: [
-          { loader: "raw-loader" },
-          {
-            loader: "markdownit-loader"
-          }
-        ]
       }
     ]
   },
@@ -110,26 +99,20 @@ const webpackConfig = {
       layout: path.join(theme.layouts)
     }),
     new SimpleI18nWebpackPlugin({
-      language: configPath,
-      beforeCreate: beforeConfigCreate
+      language: configPath
     }),
     new webpack.ProvidePlugin({
-      "__config__": configPath,
-      "__database__": path.join(dataPath().database, 'index.json')
-    }),
-    new MyWebpackPlugin()
+      "__config__": configPath
+    })
   ]
 };
 
 htmlList().forEach(item => {
-  if (!config.dev.asyncImport) {
-    webpackConfig.entry[item.chunkName] = item.chunkPath;
-  }
   webpackConfig.plugins.unshift(
     new HtmlWebpackPlugin({
       filename: item.filename,
       template: item.template,
-      chunks: ["vendor", "common", config.dev.asyncImport ? '' : item.chunkName],
+      chunks: ["vendor", "common"],
       minify: isProd
         ? {
             removeComments: true,

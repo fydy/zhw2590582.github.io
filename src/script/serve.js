@@ -1,7 +1,7 @@
 const serve = require("webpack-serve");
 const webpackConfig = require("./webpack.config.js");
-const { dataPath } = require("./utils");
-const config = require(dataPath().config);
+const { getConfig } = require("./utils");
+const config = getConfig();
 
 serve(
   {
