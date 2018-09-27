@@ -1,4 +1,5 @@
 import "normalize.css";
+import "../scss/common";
 import Highway from "@dogstudio/highway/build/es5/highway";
 
 export default new Highway.Core({

@@ -18,7 +18,7 @@ function creatApi() {
                 t: (new Date).getTime()
             })
             return request('get', `${issuesApi}?${queryStringify(query)}`, null, {
-                Accept: "application/vnd.github.v3.html+json"
+                Accept: "application/vnd.github.v3.full+json"
             });
         },
 
@@ -29,7 +29,7 @@ function creatApi() {
                 t: (new Date).getTime()
             })
             return request('get', `${issuesApi}?${queryStringify(query)}`, null, {
-                Accept: "application/vnd.github.v3.html+json"
+                Accept: "application/vnd.github.v3.full+json"
             });
         },
 
@@ -39,7 +39,7 @@ function creatApi() {
                 t: (new Date).getTime()
             })
             return request('get', `${issuesApi}/${id}?${queryStringify(query)}`, null, {
-                Accept: "application/vnd.github.v3.html+json"
+                Accept: "application/vnd.github.v3.full+json"
             });
         }
     }

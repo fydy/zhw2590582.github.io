@@ -17,8 +17,3 @@ export default class Renderer extends Highway.Renderer {
     console.log(Renderer.name, "onLeaveCompleted");
   }
 }
-
-api.getIssueByPage(1).then(data => {
-  document.querySelector('.page-index').innerHTML = JSON.stringify(data);
-  updateCache();
-});
