@@ -40,6 +40,10 @@ const config = {
     baidutongji: "6878b56ee36c990a8330d8bc412ede91",
     menus: [
       {
+        name: "首页",
+        link: "/"
+      },
+      {
         name: "关于",
         link: "/about.html"
       },
