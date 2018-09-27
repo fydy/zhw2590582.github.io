@@ -162,7 +162,6 @@ export function smoothScroll(element) {
 
 // 格式化文章
 export function formatPost(item) {
-  console.log(item);
   const formatPost = {
     title: item.title,
     html: item.body_html,
@@ -180,7 +179,7 @@ export function formatPost(item) {
   } catch (error) {
     formatPost.poster = '/static/img/default/poster.png';
   }
-  console.log(formatPost);
+
   return formatPost;
 }
 
