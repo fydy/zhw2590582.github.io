@@ -3,14 +3,39 @@ import "app-loading/app-loading.min.css";
 import Highway from "@dogstudio/highway/build/es5/highway";
 import api from "./api";
 import loading from 'app-loading';
-import { updateCache, infiniteScroll, formatPost } from "./utils";
+import { infiniteScroll, formatPost } from "./utils";
 
-export default Highway.Renderer;
 export const allPost = [];
+let currentPage = 1;
 let loadEnd = false;
-const $page = document.querySelector('.page-index');
+let $page = document.querySelector('.page-index');
+let removeInfiniteScroll;
 
-function creatLoad() {
+export default class Renderer extends Highway.Renderer {
+  onEnter() {
+    if (!$page) {
+      $page = document.querySelector('.page-index');
+      creatPost(currentPage++, $page);
+      removeInfiniteScroll = infiniteScroll(() => {
+        if (loadEnd) return;
+        creatPost(currentPage++, $page);
+      });
+    }
+  }
+  onLeave() {
+    
+  }
+}
+
+if ($page) {
+  creatPost(currentPage++, $page);
+  removeInfiniteScroll = infiniteScroll(() => {
+    if (loadEnd) return;
+    creatPost(currentPage++, $page);
+  });
+}
+
+function creatLoad(target) {
   const loadHtml = `
   <div class="post-load">
     <div class="title load"></div>
@@ -29,19 +54,21 @@ function creatLoad() {
     </div>
   </div>
   `;
-  $page.insertAdjacentHTML("beforeend", loadHtml.repeat(2));
+  target.insertAdjacentHTML("beforeend", loadHtml);
 }
 
 function removeLoad() {
-  Array.from(document.querySelectorAll('.post-load')).forEach(item => item.remove());
+  const $loads = document.querySelectorAll('.post-load');
+  Array.from($loads).forEach(item => item.remove());
 }
 
-function creatPost(page) {
+function creatPost(page, target) {
   loading.setColor('#000').start();
-  creatLoad();
+  creatLoad(target);
   api.getIssueByPage(page).then(data => {
     if (data.length === 0) {
       loadEnd = true;
+      removeLoad();
       loading.stop();
       return;
     }
@@ -67,15 +94,8 @@ function creatPost(page) {
       `
     }).join('');
     removeLoad();
-    $page.insertAdjacentHTML("beforeend", postHtml);
+    target.insertAdjacentHTML("beforeend", postHtml);
     loading.stop();
-    updateCache();
+    Highway.update();
   })
 }
-
-let currentPage = 1;
-creatPost(currentPage++);
-infiniteScroll(() => {
-  if (loadEnd) return;
-  creatPost(currentPage++);
-});

@@ -4,7 +4,6 @@ import "dayjs/locale/zh-cn";
 dayjs.extend(relativeTime);
 dayjs.locale("zh-cn");
 const { website, dev, theme } = __config__;
-import H from "./common";
 
 // 判读是否手机环境
 export function isMobile() {
@@ -19,18 +18,6 @@ export function getURLParameters() {
   return (url.match(/([^?=&]+)(=([^&]*))/g) || []).reduce(function(a, v) {
     return (a[v.slice(0, v.indexOf("="))] = v.slice(v.indexOf("=") + 1)), a;
   }, {});
-}
-
-// 更新缓存
-export function updateCache() {
-  const key = H.location.href;
-  const cache = H.cache.get(key);
-  if (cache) {
-    cache.page = document.cloneNode(true);
-    cache.view = document.querySelector("[data-router-view]").cloneNode(true);
-    H.cache.set(key, cache);
-    H.afterFetch();
-  }
 }
 
 // 对象转url参数
@@ -76,10 +63,15 @@ export function infiniteScroll(callback) {
   }
 
   const debounceCallback = debounce(callback, 500);
-  window.addEventListener("scroll", e => {
+  const scrollEvent = e => {
     if (getScrollTop() < getDocumentHeight() - window.innerHeight - 100) return;
     debounceCallback();
-  });
+  };
+
+  window.addEventListener("scroll", scrollEvent);
+  return () => {
+    window.removeEventListener("scroll", scrollEvent);
+  };
 }
 
 // 设置标题
@@ -90,20 +82,20 @@ export function setTitle(subTitle) {
 // 滚动固定
 export function scrollFixed(selector, distance = 0, cb) {
   const el = document.querySelector(selector);
-  if (el) {
-    const elTop =
-      el.getBoundingClientRect().top -
-      document.body.getBoundingClientRect().top;
-    function callback() {
-      if (document.documentElement.scrollTop > elTop - distance) {
-        cb(true);
-      } else {
-        cb(false);
-      }
+  const elTop =
+    el.getBoundingClientRect().top - document.body.getBoundingClientRect().top;
+  function callback() {
+    if (document.documentElement.scrollTop > elTop - distance) {
+      cb(true);
+    } else {
+      cb(false);
     }
-    callback();
-    window.addEventListener("scroll", callback);
   }
+  callback();
+  window.addEventListener("scroll", callback);
+  return () => {
+    window.removeEventListener("scroll", callback);
+  };
 }
 
 // 主题路径
@@ -150,19 +142,24 @@ export function formatPost(item) {
   const formatPost = {
     title: item.title,
     html: item.body_html,
-    excerpt: truncateString(item.body_text.replace(/[\r\n]/g, ""), website.post.excerpt),
+    excerpt: truncateString(
+      item.body_text.replace(/[\r\n]/g, ""),
+      website.post.excerpt
+    ),
     created_at: relative(item.created_at),
     updated_at: relative(item.updated_at),
     comments: item.comments,
-    tags: item.labels.filter(tag => tag.name !== 'post').map(tag => tag.name),
+    tags: item.labels.filter(tag => tag.name !== "post").map(tag => tag.name),
     url: item.url,
     id: item.number
-  }
+  };
 
   try {
-    formatPost.poster = /src=[\'\"]?([^\'\"]*)[\'\"]?/i.exec(/<img.*?(?:>|\/>)/.exec(item.body_html)[0])[1];
+    formatPost.poster = /src=[\'\"]?([^\'\"]*)[\'\"]?/i.exec(
+      /<img.*?(?:>|\/>)/.exec(item.body_html)[0]
+    )[1];
   } catch (error) {
-    formatPost.poster = '/static/img/default/poster.png';
+    formatPost.poster = "/static/img/default/poster.png";
   }
 
   return formatPost;

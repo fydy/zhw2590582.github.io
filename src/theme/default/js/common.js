@@ -23,18 +23,17 @@ const H = new Highway.Core({
   }
 });
 
-H.on('NAVIGATE_OUT', (from, location) => {
-  loading.setColor('#000').start();
-  console.log('NAVIGATE_OUT')
-});
-
-H.on('NAVIGATE_IN', (to, location) => {
-  console.log('NAVIGATE_IN')
-});
+Highway.update = function () {
+  const key = H.location.href;
+  const cache = H.cache.get(key);
+  if (cache) {
+    cache.page = document.cloneNode(true);
+    cache.view = document.querySelector("[data-router-view]").cloneNode(true);
+    H.cache.set(key, cache);
+    H.afterFetch();
+  }
+}
 
 H.on('NAVIGATE_END', (to, from, location) => {
-  loading.stop();
   scrollMenuView && smoothScroll(to.view, -100);
 });
-
-export default H;
