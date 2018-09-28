@@ -2,8 +2,7 @@ import "../scss/index.scss";
 import "app-loading/app-loading.min.css";
 import Highway from "@dogstudio/highway/build/es5/highway";
 import api from "./api";
-import loading from 'app-loading';
-import { click, formatPost } from "./utils";
+import { click } from "./utils";
 
 export const allPost = [];
 let currentPage = 1;
@@ -12,7 +11,7 @@ let $posts = document.querySelector('.posts');
 export default class Renderer extends Highway.Renderer {
   onEnter() {
     if (!$posts) {
-      $posts = $posts || document.querySelector('.posts');
+      $posts = document.querySelector('.posts');
       creatPost(currentPage++, $posts);
       click('loadMore', e => {
         creatPost(currentPage++, $posts);
@@ -56,20 +55,16 @@ function removeLoad() {
 }
 
 function creatPost(page, target) {
-  loading.setColor('#000').start();
   const $loadStatus = document.querySelector('.loadStatus');
   $loadStatus.innerHTML = '';
   creatLoad(target);
   api.getIssueByPage(page).then(data => {
+    removeLoad();
     if (data.length === 0) {
-      removeLoad();
-      loading.stop();
       $loadStatus.innerHTML = `<div class="loadEnd">已加载全部！</div>`;
       return;
     }
-    const postData = data.map(formatPost);
-    allPost.push(...postData);
-    const postHtml = postData.map(item => {
+    const postHtml = data.map(item => {
       return `
         <div class="post-item">
             <div class="title">
@@ -88,10 +83,8 @@ function creatPost(page, target) {
         </div>
       `
     }).join('');
-    removeLoad();
     target.insertAdjacentHTML("beforeend", postHtml);
     $loadStatus.innerHTML = `<div class="loadMore">加载更多</div>`;
-    loading.stop();
     Highway.update();
   })
 }

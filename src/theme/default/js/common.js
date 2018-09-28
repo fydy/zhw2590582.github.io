@@ -1,7 +1,6 @@
 import "normalize.css";
 import "../scss/common";
 import Highway from "@dogstudio/highway/build/es5/highway";
-import loading from 'app-loading';
 import { smoothScroll, scrollFixed } from "./utils";
 
 let scrollMenuView = false;

@@ -3,6 +3,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/zh-cn";
 dayjs.extend(relativeTime);
 dayjs.locale("zh-cn");
+import loading from 'app-loading';
 const { website, dev, theme } = __config__;
 
 // 判读是否手机环境
@@ -152,36 +153,9 @@ export function smoothScroll(element, distance = 0) {
   });
 }
 
-// 格式化文章
-export function formatPost(item) {
-  const formatPost = {
-    title: item.title,
-    html: item.body_html,
-    excerpt: truncateString(
-      item.body_text.replace(/[\r\n]/g, ""),
-      website.post.excerpt
-    ),
-    created_at: relative(item.created_at),
-    updated_at: relative(item.updated_at),
-    comments: item.comments,
-    tags: item.labels.filter(tag => tag.name !== "post").map(tag => tag.name),
-    url: item.url,
-    id: item.number
-  };
-
-  try {
-    formatPost.poster = /src=[\'\"]?([^\'\"]*)[\'\"]?/i.exec(
-      /<img.*?(?:>|\/>)/.exec(item.body_html)[0]
-    )[1];
-  } catch (error) {
-    formatPost.poster = "/static/img/default/poster.png";
-  }
-
-  return formatPost;
-}
-
 // fetch请求
 export function request(method, url, body, header) {
+  loading.setColor(website.plugins.loading).start();
   method = method.toUpperCase();
   body = body && JSON.stringify(body);
   let headers = {
@@ -198,6 +172,7 @@ export function request(method, url, body, header) {
     headers,
     body
   }).then(res => {
+    loading.stop();
     if (res.status === 404) {
       return Promise.reject("Unauthorized.");
     } else {

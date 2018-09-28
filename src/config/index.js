@@ -32,7 +32,10 @@ const config = {
       owner: "zhw2590582",
       admin: ["zhw2590582"]
     },
-    baidutongji: "6878b56ee36c990a8330d8bc412ede91",
+    plugins: {
+      loading: "#000",
+      baidutongji: "6878b56ee36c990a8330d8bc412ede91"
+    },
     menus: [
       {
         name: "首页",
