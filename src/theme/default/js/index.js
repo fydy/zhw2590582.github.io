@@ -3,35 +3,28 @@ import "app-loading/app-loading.min.css";
 import Highway from "@dogstudio/highway/build/es5/highway";
 import api from "./api";
 import loading from 'app-loading';
-import { infiniteScroll, formatPost } from "./utils";
+import { click, formatPost } from "./utils";
 
 export const allPost = [];
 let currentPage = 1;
-let loadEnd = false;
-let $page = document.querySelector('.page-index');
-let removeInfiniteScroll;
+let $posts = document.querySelector('.posts');
 
 export default class Renderer extends Highway.Renderer {
   onEnter() {
-    if (!$page) {
-      $page = document.querySelector('.page-index');
-      creatPost(currentPage++, $page);
-      removeInfiniteScroll = infiniteScroll(() => {
-        if (loadEnd) return;
-        creatPost(currentPage++, $page);
+    if (!$posts) {
+      $posts = $posts || document.querySelector('.posts');
+      creatPost(currentPage++, $posts);
+      click('loadMore', e => {
+        creatPost(currentPage++, $posts);
       });
     }
   }
-  onLeave() {
-    
-  }
 }
 
-if ($page) {
-  creatPost(currentPage++, $page);
-  removeInfiniteScroll = infiniteScroll(() => {
-    if (loadEnd) return;
-    creatPost(currentPage++, $page);
+if ($posts) {
+  creatPost(currentPage++, $posts);
+  click('loadMore', e => {
+    creatPost(currentPage++, $posts);
   });
 }
 
@@ -64,12 +57,14 @@ function removeLoad() {
 
 function creatPost(page, target) {
   loading.setColor('#000').start();
+  const $loadStatus = document.querySelector('.loadStatus');
+  $loadStatus.innerHTML = '';
   creatLoad(target);
   api.getIssueByPage(page).then(data => {
     if (data.length === 0) {
-      loadEnd = true;
       removeLoad();
       loading.stop();
+      $loadStatus.innerHTML = `<div class="loadEnd">已加载全部！</div>`;
       return;
     }
     const postData = data.map(formatPost);
@@ -95,6 +90,7 @@ function creatPost(page, target) {
     }).join('');
     removeLoad();
     target.insertAdjacentHTML("beforeend", postHtml);
+    $loadStatus.innerHTML = `<div class="loadMore">加载更多</div>`;
     loading.stop();
     Highway.update();
   })

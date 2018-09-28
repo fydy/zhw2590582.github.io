@@ -12,6 +12,21 @@ export function isMobile() {
   );
 }
 
+// 委托店家事件
+const eventMap = new Map;
+document.body.addEventListener('click', e => {
+  Array.from(eventMap.keys()).some(key => {
+    if (e.target.classList.contains(key)) {
+      eventMap.get(key)(e);
+      return true;
+    }
+  });
+});
+
+export function click(selector, callback) {
+  eventMap.set(selector, callback);
+}
+
 // 获取url参数
 export function getURLParameters() {
   var url = window.location.href;
