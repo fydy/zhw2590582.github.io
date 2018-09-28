@@ -88,7 +88,7 @@ export function setTitle(subTitle) {
 }
 
 // 滚动固定
-export function scrollFixed(selector, distance = 0) {
+export function scrollFixed(selector, distance = 0, cb) {
   const el = document.querySelector(selector);
   if (el) {
     const elTop =
@@ -96,9 +96,9 @@ export function scrollFixed(selector, distance = 0) {
       document.body.getBoundingClientRect().top;
     function callback() {
       if (document.documentElement.scrollTop > elTop - distance) {
-        el.classList.add("fixed");
+        cb(true);
       } else {
-        el.classList.remove("fixed");
+        cb(false);
       }
     }
     callback();
@@ -136,27 +136,12 @@ export function truncateString(str, num) {
   return str.length > num ? str.slice(0, num > 3 ? num - 3 : num) + "..." : str;
 }
 
-// 排序文章
-export function sortPosts(posts) {
-  let stickyPost = [];
-  let newPosts = [];
-  posts.forEach(item => {
-    if (item.sticky) {
-      stickyPost.unshift(item);
-    } else {
-      newPosts.push(item);
-    }
-  });
-  newPosts.unshift(...stickyPost.reverse());
-  return newPosts;
-}
-
 // 滚动到元素
-export function smoothScroll(element) {
+export function smoothScroll(element, distance = 0) {
   window.scroll({
     behavior: "smooth",
     left: 0,
-    top: element.getBoundingClientRect().top + window.scrollY - 80
+    top: element.getBoundingClientRect().top + window.scrollY + distance
   });
 }
 

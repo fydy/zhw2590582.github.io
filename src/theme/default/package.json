@@ -9,6 +9,7 @@
     "gitting": "^1.0.6",
     "highlight.js": "^9.12.0",
     "medium-zoom": "^1.0.2",
-    "normalize.css": "^8.0.0"
+    "normalize.css": "^8.0.0",
+    "vanilla-tilt": "^1.4.1"
   }
 }
