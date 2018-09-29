@@ -5,6 +5,7 @@ import api from "./api";
 import { click } from "./utils";
 
 let currentPage = 1;
+
 export default class Renderer extends Highway.Renderer {
   onEnter() {
     currentPage = 1;

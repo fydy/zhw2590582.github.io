@@ -34,6 +34,19 @@ scrollFixed('.layout', 0, type => {
   scrollMenuView = type;
 });
 
+function currentMenu() {
+  const pageName = window.location.pathname;
+  const menuList = Array.from(document.querySelectorAll('.menu .menu-item'));
+  const current = menuList.find(item => item.href.includes(pageName));
+  menuList.forEach(item => item.classList.remove('current'))
+  current.classList.add('current');
+}
+
+currentMenu();
+H.on('NAVIGATE_IN', (to, location) => {
+  currentMenu();
+});
+
 H.on('NAVIGATE_END', (to, from, location) => {
   scrollMenuView && smoothScroll(to.view);
 });

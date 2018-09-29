@@ -6,6 +6,7 @@
     "@dogstudio/highway": "^2.0.8",
     "app-loading": "0.0.51",
     "dayjs": "^1.7.6",
+    "fast-average-color": "^4.2.0",
     "github-markdown-css": "^2.10.0",
     "gitting": "^1.0.8",
     "highlight.js": "^9.12.0",
