@@ -13,7 +13,7 @@ export function isMobile() {
   );
 }
 
-// 委托店家事件
+// 委托点击事件
 const eventMap = new Map;
 document.body.addEventListener('click', e => {
   Array.from(eventMap.keys()).some(key => {

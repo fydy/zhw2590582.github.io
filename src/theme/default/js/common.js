@@ -1,13 +1,16 @@
 import "normalize.css";
 import "../scss/common";
+import "github-markdown-css";
+import "overlayscrollbars/css/OverlayScrollbars.min.css";
 import Highway from "@dogstudio/highway/build/es5/highway";
+import OverlayScrollbars from "overlayscrollbars";
 import { smoothScroll, scrollFixed } from "./utils";
+import Transition from "./transition";
 
 let scrollMenuView = false;
-const $scrollMenu = document.querySelector('.scroll-menu');
+let scrollbar = null;
 scrollFixed('.layout', 100, type => {
   scrollMenuView = type;
-  $scrollMenu.classList.toggle("show", type);
 });
 
 const H = new Highway.Core({
@@ -19,20 +22,22 @@ const H = new Highway.Core({
     message: () => import(/* webpackChunkName: "message" */ "./message"),
     post: () => import(/* webpackChunkName: "post" */ "./post"),
     404: () => import(/* webpackChunkName: "404" */ "./404")
+  },
+  transitions: {
+    default: Transition
   }
 });
 
 Highway.update = function () {
-  const key = H.location.href;
-  const cache = H.cache.get(key);
-  if (cache) {
-    cache.page = document.cloneNode(true);
-    cache.view = document.querySelector("[data-router-view]").cloneNode(true);
-    H.cache.set(key, cache);
-    H.afterFetch();
-  }
+  H.detach();
+  H.attach();
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+	scrollbar = OverlayScrollbars(document.querySelectorAll("body"), {});
+});
+
 H.on('NAVIGATE_END', (to, from, location) => {
-  scrollMenuView && smoothScroll(to.view, -100);
+  scrollMenuView && smoothScroll(to.view, -20);
+  scrollbar.update();
 });

@@ -63,6 +63,7 @@
         .mate {
             color: rgba(0,0,0,.5);
             font-size: 13px;
+            text-align: center;
             span {
                 margin-right: 15px;
                 a {
@@ -78,8 +79,9 @@
     .loadStatus {
         text-align: center;
         margin-bottom: 50px;
+        height: 40px;
         .loadEnd {
-            font-size: 13px;
+            font-size: 14px;
             color: rgba(0,0,0,.6);
             display: inline-block;
         }

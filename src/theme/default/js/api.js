@@ -9,10 +9,19 @@ const {
   post
 } = __config__.website;
 
-const postMap = new Map;
+let idMap = new Map;
+let pageMap = new Map;
+let labelsMap = new Map;
 
-function formatPost(item) {
-  const formatPost = {
+function postMap(map, key, val) {
+  if (!key || !val) return map;
+  if (!map.get(key)) map.set(key, []);
+  map.set(key, [...new Set([...map.get(key), val])]);
+  return map;
+}
+
+function formatPost(item, page, labels) {
+  const postData = {
     title: item.title,
     html: item.body_html,
     excerpt: truncateString(
@@ -28,15 +37,18 @@ function formatPost(item) {
   };
 
   try {
-    formatPost.poster = /src=[\'\"]?([^\'\"]*)[\'\"]?/i.exec(
+    postData.poster = /src=[\'\"]?([^\'\"]*)[\'\"]?/i.exec(
       /<img.*?(?:>|\/>)/.exec(item.body_html)[0]
     )[1];
   } catch (error) {
-    formatPost.poster = "/static/img/default/poster.png";
+    postData.poster = "/static/img/default/poster.png";
   }
 
-  postMap.set(formatPost.id, formatPost);
-  return formatPost;
+  postMap(idMap, postData.id, postData);
+  postMap(pageMap, page, postData);
+  postMap(labels, labels, postData);
+
+  return postData;
 }
 
 function creatApi() {
@@ -50,6 +62,10 @@ function creatApi() {
   return {
     // 通过分页获取issue
     getIssueByPage(page, type = 'full') {
+      if (pageMap.has(page)) {
+        return Promise.resolve(pageMap.get(page))
+      }
+
       const query = Object.assign({}, baseQuery, {
         per_page: post.pageSize,
         page: page,
@@ -59,11 +75,17 @@ function creatApi() {
 
       return request('get', `${issuesApi}?${queryStringify(query)}`, null, {
         Accept: `application/vnd.github.v3.${type}+json`
-      }).then(data => data.map(formatPost));
+      }).then(data => data.map(item => {
+        return formatPost(item, page)
+      }));
     },
 
     // 通过标签获取issue
     getIssueByLabel(labels, type = 'full') {
+      if (labelsMap.has(labels)) {
+        return Promise.resolve(labelsMap.get(labels))
+      }
+
       const query = Object.assign({}, baseQuery, {
         labels: labels,
         t: (new Date).getTime()
@@ -71,14 +93,16 @@ function creatApi() {
 
       return request('get', `${issuesApi}?${queryStringify(query)}`, null, {
         Accept: `application/vnd.github.v3.${type}+json`
-      }).then(data => data.map(formatPost));
+      }).then(data => data.map(item => {
+        return formatPost(item, null, labels)
+      }));
     },
 
     // 通过id获取issues
     getIssueById(id, type = 'full') {
       id = Number(id);
-      if (postMap.has(id)) {
-        return Promise.resolve(postMap.get(id))
+      if (idMap.has(id)) {
+        return Promise.resolve(idMap.get(id)[0])
       }
 
       const query = Object.assign({}, baseQuery, {
