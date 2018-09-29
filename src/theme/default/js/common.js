@@ -38,8 +38,10 @@ function currentMenu() {
   const pageName = window.location.pathname;
   const menuList = Array.from(document.querySelectorAll('.menu .menu-item'));
   const current = menuList.find(item => item.href.includes(pageName));
-  menuList.forEach(item => item.classList.remove('current'))
-  current.classList.add('current');
+  menuList.forEach(item => item.classList.remove('current'));
+  if (current) {
+    current.classList.add('current');
+  }
 }
 
 currentMenu();

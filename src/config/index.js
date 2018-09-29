@@ -17,7 +17,7 @@ const config = {
     seo: {
       title: "老赵茶馆",
       keywords: "老赵, 茶馆, 前端, 代码, 扯淡, 音乐, 电影, 分享",
-      description: "Hi, 老赵其实不老, 是一枚前端攻城狮, 就这样...",
+      description: "Hi, 老赵其实不老, 是一枚前端攻城狮, 就这样...<br/>QQ群：320881312",
       copyright: '© 2018 All Rights Reserved. 粤ICP备15035931号-1. 阿里云 提供 CDN 服务. 托管于 <a href="https://github.com/zhw2590582/zhw2590582.github.io">GitHub</a>.'
     },
     post: {
