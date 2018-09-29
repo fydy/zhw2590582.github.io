@@ -1,6 +1,6 @@
 import "../scss/post.scss";
 import Highway from "@dogstudio/highway/build/es5/highway";
-import { getURLParameters } from "./utils";
+import { getURLParameters, setTitle } from "./utils";
 import api from "./api";
 import Gitting from "gitting";
 import "gitting/dist/gitting.css";
@@ -13,6 +13,7 @@ export default class Renderer extends Highway.Renderer {
     const $mate = document.querySelector(".page-post .mate");
     const $content = document.querySelector(".page-post .content");
     api.getIssueById(id).then(data => {
+      setTitle(data.title);
       $title.innerHTML = data.title;
       $mate.innerHTML = `<span>发布于 ${data.created_at}</span>${data.tags.map(tag => `<span><a href="archive.html?tag=${tag}">#${tag}</a></span>`)}`
       $content.innerHTML = data.html;
