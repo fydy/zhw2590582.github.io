@@ -4,6 +4,7 @@ import "github-markdown-css";
 import "overlayscrollbars/css/OverlayScrollbars.min.css";
 import Highway from "@dogstudio/highway/build/es5/highway";
 import Transition from "./transition";
+import VanillaTilt from "vanilla-tilt";
 import { smoothScroll, scrollFixed } from "./utils";
 
 const H = new Highway.Core({
@@ -25,6 +26,8 @@ Highway.update = function () {
   H.detach();
   H.attach();
 }
+
+VanillaTilt.init(document.querySelector(".logo .inner"));
 
 let scrollMenuView = false;
 scrollFixed('.layout', 0, type => {
