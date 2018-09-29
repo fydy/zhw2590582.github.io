@@ -1,13 +1,18 @@
-import Highway from "@dogstudio/highway";
+import Highway from "@dogstudio/highway/build/es5/highway";
+import fade from "./fade";
 
 export default class Transition extends Highway.Transition {
   in(view, done) {
-    console.log("in");
-    done();
+    fade.fadeIn(view, {
+        duration: 300,
+        complete: done
+    })
   }
 
   out(view, done) {
-    console.log("out");
-    done();
+    fade.fadeOut(view, {
+        duration: 150,
+        complete: done
+    })
   }
 }

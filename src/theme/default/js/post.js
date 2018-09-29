@@ -16,7 +16,6 @@ export default class Renderer extends Highway.Renderer {
       $title.innerHTML = data.title;
       $mate.innerHTML = `<span>发布于 ${data.created_at}</span>${data.tags.map(tag => `<span><a href="archive.html?tag=${tag}">#${tag}</a></span>`)}`
       $content.innerHTML = data.html;
-
       gitting && gitting.destroy();
       gitting = new Gitting({
         ...__config__.website.github,

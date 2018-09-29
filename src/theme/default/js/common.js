@@ -3,13 +3,11 @@ import "../scss/common";
 import "github-markdown-css";
 import "overlayscrollbars/css/OverlayScrollbars.min.css";
 import Highway from "@dogstudio/highway/build/es5/highway";
-import OverlayScrollbars from "overlayscrollbars";
-import { smoothScroll, scrollFixed } from "./utils";
 import Transition from "./transition";
+import { smoothScroll, scrollFixed } from "./utils";
 
 let scrollMenuView = false;
-let scrollbar = null;
-scrollFixed('.layout', 100, type => {
+scrollFixed('.layout', 0, type => {
   scrollMenuView = type;
 });
 
@@ -33,11 +31,6 @@ Highway.update = function () {
   H.attach();
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-	scrollbar = OverlayScrollbars(document.querySelectorAll("body"), {});
-});
-
 H.on('NAVIGATE_END', (to, from, location) => {
-  scrollMenuView && smoothScroll(to.view, -20);
-  scrollbar.update();
+  scrollMenuView && smoothScroll(to.view, -50);
 });
