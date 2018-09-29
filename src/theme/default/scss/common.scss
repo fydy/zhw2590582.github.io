@@ -110,19 +110,37 @@ img {
 .container {
   display: flex;
   flex-direction: column;
-  width: 610px;
+  width: 650px;
   min-height: 100%;
   padding: 0 15px;
   margin: 0 auto;
   position: relative;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
   background-color: #fff;
+
+  &::before, &::after {
+    position: absolute;
+    top: 0;
+    width: 7px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.05);
+    content: '';
+
+  }
+
+  &::before {
+    left: -7px;
+  }
+
+  &::after {
+    right: -7px;
+  }
 }
 
 .header {
   flex: 0 0 auto;
   padding: 60px 0 30px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   text-align: center;
   border-bottom: 1px dotted #eaeaea;
   .logo {
@@ -157,35 +175,11 @@ img {
   }
 }
 
-.scroll-menu {
-  display: none;
-  position: fixed;
-  z-index: 9;
-  left: 0;
-  top: 0;
-  right: 0;
-  width: 100%;
-  text-align: center;
-  height: 50px;
-  line-height: 50px;
-  font-size: 13px;
-  color: #999;
-  background: #fff;
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
-  transition: transform 0.25s ease-in-out;
-  will-change: transform;
-  transform: translateY(-50px);
-  &.show {
-    transform: translateY(0);
-  }
-  .menu-item {
-    margin: 0 10px;
-    padding: 0 10px;
-  }
-}
-
 .layout {
   flex: 1 0 auto;
+  .router-view {
+    padding-top: 30px;
+  }
 }
 
 .footer {

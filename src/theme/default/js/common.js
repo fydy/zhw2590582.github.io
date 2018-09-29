@@ -6,11 +6,6 @@ import Highway from "@dogstudio/highway/build/es5/highway";
 import Transition from "./transition";
 import { smoothScroll, scrollFixed } from "./utils";
 
-let scrollMenuView = false;
-scrollFixed('.layout', 0, type => {
-  scrollMenuView = type;
-});
-
 const H = new Highway.Core({
   renderers: {
     index: () => import(/* webpackChunkName: "index" */ "./index"),
@@ -31,6 +26,11 @@ Highway.update = function () {
   H.attach();
 }
 
+let scrollMenuView = false;
+scrollFixed('.layout', 0, type => {
+  scrollMenuView = type;
+});
+
 H.on('NAVIGATE_END', (to, from, location) => {
-  scrollMenuView && smoothScroll(to.view, -50);
+  scrollMenuView && smoothScroll(to.view);
 });
