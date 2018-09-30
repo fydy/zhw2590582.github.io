@@ -11,7 +11,7 @@ export default class Renderer extends Highway.Renderer {
     const $title = document.querySelector(".page-post .title");
     const $mate = document.querySelector(".page-post .mate");
     const $content = document.querySelector(".page-post .content");
-    api.getIssueById(id).then(data => {
+    api.getIssueById(parseInt(id)).then(data => {
       setTitle(data.title);
       $title.innerHTML = data.title;
       $mate.innerHTML = `<span>发布于 ${data.created_at}</span>${data.tags.map(tag => `<span><a href="archive.html?tag=${encodeURIComponent(tag)}">#${tag}</a></span>`)}`
