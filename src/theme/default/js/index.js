@@ -39,13 +39,14 @@ function creatPost(page, target) {
             </div>
             <div class="mate">
               <span>发布于 ${item.created_at}</span>
-              ${item.tags.map(tag => `<span><a href="archive.html?tag=${tag}">#${tag}</a></span>`)}
+              ${item.tags.map(tag => `<span><a href="archive.html?tag=${encodeURIComponent(tag)}">#${tag}</a></span>`)}
             </div>
         </div>
       `
     }).join('');
 
-    document.querySelector('.post-load').remove();
+    const $postLoad = document.querySelector('.post-load');
+    $postLoad && $postLoad.remove();
     target.insertAdjacentHTML("beforeend", postHtml);
     $loadStatus.innerHTML = `<div class="loadMore">加载更多</div>`;
     currentPage++;

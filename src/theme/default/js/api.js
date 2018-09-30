@@ -24,10 +24,6 @@ function formatPost(item, page, labels) {
   const postData = {
     title: item.title,
     html: item.body_html,
-    excerpt: truncateString(
-      item.body_text.replace(/[\r\n]/g, ""),
-      post.excerpt
-    ),
     created_at: relative(item.created_at),
     updated_at: relative(item.updated_at),
     comments: item.comments,
@@ -35,6 +31,15 @@ function formatPost(item, page, labels) {
     url: item.url,
     id: item.number
   };
+
+  try {
+    postData.excerpt = truncateString(
+      item.body_text.replace(/[\r\n]/g, ""),
+      post.excerpt
+    );
+  } catch (error) {
+    postData.excerpt = "";
+  }
 
   try {
     postData.poster = /src=[\'\"]?([^\'\"]*)[\'\"]?/i.exec(
@@ -46,7 +51,7 @@ function formatPost(item, page, labels) {
 
   postMap(idMap, postData.id, postData);
   postMap(pageMap, page, postData);
-  postMap(labels, labels, postData);
+  postMap(labelsMap, labels, postData);
 
   return postData;
 }

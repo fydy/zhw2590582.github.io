@@ -3,7 +3,6 @@ import Highway from "@dogstudio/highway/build/es5/highway";
 import { getURLParameters, setTitle } from "./utils";
 import api from "./api";
 import Gitting from "gitting";
-import "gitting/dist/gitting.css";
 
 let gitting = null;
 export default class Renderer extends Highway.Renderer {
@@ -15,15 +14,17 @@ export default class Renderer extends Highway.Renderer {
     api.getIssueById(id).then(data => {
       setTitle(data.title);
       $title.innerHTML = data.title;
-      $mate.innerHTML = `<span>发布于 ${data.created_at}</span>${data.tags.map(tag => `<span><a href="archive.html?tag=${tag}">#${tag}</a></span>`)}`
+      $mate.innerHTML = `<span>发布于 ${data.created_at}</span>${data.tags.map(tag => `<span><a href="archive.html?tag=${encodeURIComponent(tag)}">#${tag}</a></span>`)}`
       $content.innerHTML = data.html;
-      gitting && gitting.destroy();
+      gitting && gitting.destroy && gitting.destroy();
       gitting = new Gitting({
         ...__config__.website.github,
         number: id,
         initEnd: Highway.update
       });
       gitting.render("#gitting-container");
+    }).catch(err => {
+      window.location.href = '/404.html'
     });
   }
 }

@@ -176,3 +176,29 @@ img {
   font-size: 13px;
   text-align: center;
 }
+
+.page {
+  min-height: 600px;
+  .title {
+      color: rgba(0,0,0,.8);
+      font-size: 20px;
+      line-height: 1.8;
+      margin-bottom: 25px;
+      text-align: center;
+      .load {
+          display: inline-block;
+          width: 50%;
+          height: 20px;
+      }
+  }
+  .content {
+      margin-bottom: 50px;
+      padding-bottom: 50px;
+      .load {
+          height: 15px;
+      }
+  }
+  .load {
+      background: rgba(0,0,0,.05);
+  }
+}
