@@ -7,7 +7,7 @@
     "app-loading": "0.0.51",
     "dayjs": "^1.7.6",
     "github-markdown-css": "^2.10.0",
-    "gitting": "^1.0.8",
+    "gitting": "^1.0.9",
     "normalize.css": "^8.0.0",
     "vanilla-tilt": "^1.4.1"
   }
