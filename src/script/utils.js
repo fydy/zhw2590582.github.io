@@ -2,7 +2,6 @@ const path = require("path");
 const fs = require("fs-extra");
 const glob = require("glob");
 const importFresh = require("import-fresh");
-const logger = require("./logger");
 
 exports.configPath = path.join(process.cwd(), "src/config");
 

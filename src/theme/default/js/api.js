@@ -2,7 +2,8 @@ import {
   request,
   queryStringify,
   truncateString,
-  relative
+  relative,
+  insertImg
 } from "./utils";
 const {
   github,
@@ -46,7 +47,7 @@ function formatPost(item, page, labels) {
       /<img.*?(?:>|\/>)/.exec(item.body_html)[0]
     )[1];
   } catch (error) {
-    postData.poster = "/static/img/default/poster.png";
+    postData.poster = insertImg("poster.png");
   }
 
   postMap(idMap, postData.id, postData);

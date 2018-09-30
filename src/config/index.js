@@ -7,8 +7,7 @@ const config = {
   dev: {
     port: 3000,
     outputPath: path.join(process.cwd(), "./"),
-    publicPath: isProd ? "https://cdn.zhw-island.com/" : "/",
-    asyncImport: false
+    publicPath: isProd ? "https://cdn.zhw-island.com/" : "/"
   },
   website: {
     pageName(page){
@@ -22,8 +21,7 @@ const config = {
     },
     post: {
       excerpt: 120,
-      pageSize: 5,
-      relatedPost: 3
+      pageSize: 5
     },
     github: {
       clientID: "2fa6841ea796af21b439",

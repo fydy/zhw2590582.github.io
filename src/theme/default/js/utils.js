@@ -13,6 +13,11 @@ export function isMobile() {
   );
 }
 
+// 插入图片
+export function insertImg(file) {
+  return dev.publicPath + 'static/img/' + file;
+}
+
 // 委托点击事件
 const eventMap = new Map;
 document.body.addEventListener('click', e => {
