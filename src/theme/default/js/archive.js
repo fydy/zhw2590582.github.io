@@ -1,41 +1,38 @@
-import "../sass/pages";
-import "../sass/archive";
-import { getURLParameters, relative, setTitle } from "./utils";
-let { search, topic }  = getURLParameters();
+import "../scss/archive.scss";
+import Highway from "@dogstudio/highway/build/es5/highway";
+import { getURLParameters, setTitle } from "./utils";
+import api from "./api";
 
-setTitle('归档');
-search = decodeURIComponent(search).toLowerCase();
-topic = decodeURIComponent(topic).toLowerCase();
-const $archiveHeader = document.querySelector(".archive-page .header-title span");
-const $archiveList = document.querySelector(".archive-page .content");
-let posts = [];
-
-if (search !== 'undefined') {
-    posts = __database__.posts.filter(item => {
-        return item.title.toLowerCase().includes(search) || item.excerpt.toLowerCase().includes(search) || item.topic.toLowerCase().includes(search); 
-    });
-    $archiveHeader.innerHTML = `搜索：${search}`
-} else if (topic !== 'undefined') {
-    posts = __database__.posts.filter(item => {
-        return item.topic.toLowerCase().includes(topic);
-    });
-    $archiveHeader.innerHTML = `话题：${topic}`
-} else {
-    posts = __database__.posts;
-    $archiveHeader.innerHTML = `全部文章`
+export default class Renderer extends Highway.Renderer {
+  onEnter() {
+    let { tag } = getURLParameters();
+    const $title = document.querySelector('.page-archive .title');
+    if (tag) {
+      tag = decodeURIComponent(tag);
+      setTitle(tag + ' - 归档');
+      $title.innerHTML = `标签: ${tag}`;
+      api.getIssueByLabel(tag + ',post').then(creatArchive);
+    } else {
+      setTitle('归档');
+      $title.innerHTML = `全部文章`;
+      api.getIssueByLabel('post').then(creatArchive);
+    }
+  }
 }
 
-const archiveHtml = posts.map(item => {
+function creatArchive(data) {
+  const $content = document.querySelector('.page-archive .content');
+  const archiveHtml = data.map(item => {
     return `
         <div class="archive-item">
-            <a href="/post.html?name=${encodeURIComponent(item.name)}" class="title" title="${item.name}">${item.title}</a>
+            <a href="/post.html?id=${item.id}" class="title" title="${item.title}">${item.title}</a>
             <div class="meta clearfix">
-                ${item.topic.split(',').map(item => `<a href="/archive.html?topic=${encodeURIComponent(item.trim())}" title="${item.trim()}" class="topic">${item.trim()}</a>`).join('<span class="dot"></span>')}
-                <span class="dot"></span>
-                <span class="time" title="${item.creatDate}">发布于 ${relative(item.creatDate)}</span>
+                <span>发布于 ${item.created_at}</span>
+                ${item.tags.map(tag => `<span><a href="/archive.html?tag=${encodeURIComponent(tag)}" title="${tag}">#${tag}</a></span>`).join('')}
             </div>
         </div>
     `;
-}).join('');
-
-$archiveList.innerHTML = archiveHtml;
+  }).join('');
+  $content.innerHTML = archiveHtml;
+  Highway.update();
+}

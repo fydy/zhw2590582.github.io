@@ -1,89 +1,54 @@
-import loading from 'app-loading';
-import "app-loading/app-loading.min.css";
-import "highlight.js/styles/github.css";
-import '../sass/common';
-import '../sass/posts';
-import '../fonts/style.css';
-import "../sass/utils/tui-editor-contents.css";
-import "../sass/utils/mobile.scss";
-import { scrollFixed, creatPoster, isMobile } from "./utils/index";
+import "normalize.css";
+import "../scss/common";
+import "github-markdown-css";
+import "gitting/dist/gitting.css";
+import Highway from "@dogstudio/highway/build/es5/highway";
+import Transition from "./transition";
+import VanillaTilt from "vanilla-tilt";
+import { smoothScroll, scrollFixed } from "./utils";
 
-if (isMobile()) {
-    document.querySelector('body').classList.add('mobile');
-}
-
-// 加载条
-loading.setColor('#000').start();
-document.addEventListener('DOMContentLoaded', e => {
-    setTimeout(loading.stop.bind(loading), 1200);
+const H = new Highway.Core({
+  renderers: {
+    index: () => import(/* webpackChunkName: "index" */ "./index"),
+    about: () => import(/* webpackChunkName: "about" */ "./about"),
+    archive: () => import(/* webpackChunkName: "archive" */ "./archive"),
+    editor: () => import(/* webpackChunkName: "editor" */ "./editor"),
+    message: () => import(/* webpackChunkName: "message" */ "./message"),
+    post: () => import(/* webpackChunkName: "post" */ "./post"),
+    404: () => import(/* webpackChunkName: "404" */ "./404")
+  },
+  transitions: {
+    default: Transition
+  }
 });
 
-// 自动选中菜单
-const pageName = window.location.pathname;
-const menuList = Array.from(document.querySelectorAll('.menu .item'));
-const current = menuList.find(item => item.href.includes(pageName));
-current && pageName !== '/' && current.classList.add('current');
+Highway.update = function () {
+  H.detach();
+  H.attach();
+}
 
-// 搜索
-const searchTool = document.querySelector('.search-tool');
-const searchBtn = document.querySelector('.search-btn');
-const searchInput = document.querySelector('.search-input');
-searchBtn.addEventListener('click', e => {
-    e.preventDefault();
-    if (searchTool.classList.contains('active')) {
-        window.location.href = '/archive.html?search=' + encodeURIComponent(searchInput.value.trim());
-    } else {
-        searchTool.classList.add('active');
-        searchInput.focus();
-    }
+VanillaTilt.init(document.querySelector(".logo .inner"));
+
+let scrollMenuView = false;
+scrollFixed('.layout', 0, type => {
+  scrollMenuView = type;
 });
 
-// 全局失焦
-document.addEventListener('click', e => {
-    if (!e.path.some(item => item === searchTool) && searchTool.classList.contains('active')) {
-        searchTool.classList.remove('active');
-    }
+function currentMenu() {
+  const pageName = window.location.pathname;
+  const menuList = Array.from(document.querySelectorAll('.menu .menu-item'));
+  const current = menuList.find(item => item.href.includes(pageName));
+  menuList.forEach(item => item.classList.remove('current'));
+  if (current) {
+    current.classList.add('current');
+  }
+}
+
+currentMenu();
+H.on('NAVIGATE_IN', (to, location) => {
+  currentMenu();
 });
 
-// 滚动固定侧边栏
-if (!isMobile()) {
-    scrollFixed('.scroll-fixed', 60);
-}
-
-// 热门话题
-const topicEl = document.querySelector(".widget.topic .content");
-if (topicEl && !isMobile()) {
-    const topicObj = {};
-    __database__.posts.forEach(post => {
-        post.topic.split(',').forEach(item => {
-            if (topicObj[item]) {
-                topicObj[item] += 1;
-            } else {
-                topicObj[item] = 1;
-            }
-        });
-    });
-    const topicHtml = Object.keys(topicObj).filter(Boolean).slice(0, 20).map(item => {
-        return `<a class="topic-item" title="${item.trim()}" href="/archive.html?topic=${encodeURIComponent(item.trim())}">${item.trim()}(${topicObj[item]})</a>`
-    }).join('');
-    topicEl.insertAdjacentHTML("beforeend", topicHtml);
-}
-
-// 近期文章
-const recentEl = document.querySelector(".widget.recent .content");
-if (recentEl && !isMobile()) {
-    const recentHtml = __database__.posts.slice(0, 5).map(post => {
-        return `
-            <div class="recent-item flex">
-                <a class="poster" href="/post.html?name=${encodeURIComponent(post.name)}" title="${post.name}" style="background-image: url(${post.poster || creatPoster()});"></a>
-                <div class="info flex-item flex flex-hc">
-                    <a class="title text-ellipsis" href="/post.html?name=${encodeURIComponent(post.name)}" title="${post.name}">${post.title}</a>
-                    <div class="cat text-ellipsis">
-                        ${post.topic.split(',').map(item => `<a href="/archive.html?topic=${encodeURIComponent(item.trim())}" title="${item.trim()}" class="topic">${item.trim()}</a>`).join('<span class="dot"></span>')}
-                    </div>
-                </div>
-            </div>
-        `
-    }).join('');
-    recentEl.insertAdjacentHTML("beforeend", recentHtml);
-}
+H.on('NAVIGATE_END', (to, from, location) => {
+  scrollMenuView && smoothScroll(to.view);
+});

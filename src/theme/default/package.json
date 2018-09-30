@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "Island default theme",
   "dependencies": {
-    "@dogstudio/highway": "^2.0.1",
-    "app-loading": "^0.0.51",
-    "dayjs": "^1.7.5",
-    "gitting": "^1.0.5",
-    "highlight.js": "^9.12.0",
-    "medium-zoom": "^0.4.0",
-    "normalize.css": "^8.0.0"
+    "@dogstudio/highway": "^2.0.8",
+    "app-loading": "0.0.51",
+    "dayjs": "^1.7.6",
+    "github-markdown-css": "^2.10.0",
+    "gitting": "^1.0.8",
+    "normalize.css": "^8.0.0",
+    "vanilla-tilt": "^1.4.1"
   }
 }

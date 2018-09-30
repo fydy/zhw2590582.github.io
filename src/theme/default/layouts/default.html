@@ -1,12 +1,7 @@
 <!-- @include:header -->
-<div class="layout default-layout">
-    <div class="container flex">
-        <div class="part-left flex-item">
-            <!-- @slot:true -->
-        </div>
-        <div class="part-right mobile-hide">
-            <!-- @include:sidebar -->
-        </div>
+<div class="layout layout-default">
+    <div class="router-view" data-router-view="_(website.pageName())">
+        <!-- @slot:true -->
     </div>
 </div>
 <!-- @include:footer -->

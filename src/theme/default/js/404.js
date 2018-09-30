@@ -1,4 +1,5 @@
-import "../sass/pages";
-import "../sass/404";
+import "../scss/404.scss";
+import Highway from "@dogstudio/highway/build/es5/highway";
 import { setTitle } from "./utils";
-setTitle('页面没发现');
+setTitle('页面不存在');
+export default Highway.Renderer;
