@@ -16,6 +16,7 @@ const H = new Highway.Core({
     archive: () => import(/* webpackChunkName: "archive" */ "./archive"),
     editor: () => import(/* webpackChunkName: "editor" */ "./editor"),
     message: () => import(/* webpackChunkName: "message" */ "./message"),
+    friends: () => import(/* webpackChunkName: "friends" */ "./friends"),
     post: () => import(/* webpackChunkName: "post" */ "./post"),
     404: () => import(/* webpackChunkName: "404" */ "./404")
   },

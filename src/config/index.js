@@ -52,44 +52,12 @@ const config = {
         link: "/message.html"
       },
       {
+        name: "友链",
+        link: "/friends.html"
+      },
+      {
         name: "编辑",
         link: "/editor.html"
-      }
-    ],
-    socials: [
-      {
-        name: "weibo",
-        link: "http://weibo.com/qq717995589"
-      },
-      {
-        name: "github",
-        link: "https://github.com/zhw2590582"
-      },
-      {
-        name: "dribbble",
-        link: "https://dribbble.com/HarveyZack"
-      },
-      {
-        name: "twitter",
-        link: "https://twitter.com/HarveyZack1990"
-      }
-    ],
-    links: [
-      {
-        name: "weibo",
-        link: "http://weibo.com/qq717995589"
-      },
-      {
-        name: "github",
-        link: "https://github.com/zhw2590582"
-      },
-      {
-        name: "dribbble",
-        link: "https://dribbble.com/HarveyZack"
-      },
-      {
-        name: "twitter",
-        link: "https://twitter.com/HarveyZack1990"
       }
     ]
   }
