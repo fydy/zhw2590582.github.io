@@ -52,11 +52,10 @@ H.on('NAVIGATE_OUT', (to, location) => {
 
 currentMenu();
 H.on('NAVIGATE_IN', (to, location) => {
-  loading.setColor(website.plugins.loading).start();
   currentMenu();
 });
 
 H.on('NAVIGATE_END', (to, from, location) => {
-  scrollMenuView && smoothScroll(to.view);
+  scrollMenuView && setTimeout(smoothScroll, 100, to.view);
   setTimeout(loading.stop.bind(loading), 500);
 });
