@@ -19,7 +19,7 @@ export default class Renderer extends Highway.Renderer {
       gitting && gitting.destroy && gitting.destroy();
       gitting = new Gitting({
         ...__config__.website.github,
-        number: id,
+        number: parseInt(id),
         initEnd: Highway.update
       });
       gitting.render("#gitting-container");
