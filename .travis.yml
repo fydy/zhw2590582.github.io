@@ -8,9 +8,9 @@ env:
 
 before_script:
   - npm install
-  - npm install src/theme/*
 
 script:
+  - npm run travis
   - npm run build
 
 branches:

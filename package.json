@@ -4,6 +4,7 @@
   "description": "my blog",
   "scripts": {
     "start": "cross-env NODE_ENV=development node ./src/script/serve.js",
+    "travis": "cross-env NODE_ENV=development node ./src/script/travis.js",
     "build": "cross-env NODE_ENV=production webpack --config ./src/script/webpack.config.js",
     "clean": "node ./src/script/clean.js"
   },
