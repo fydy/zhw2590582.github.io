@@ -15,6 +15,8 @@ const theme = themePath();
 const config = getConfig();
 const isProd = process.env.NODE_ENV === "production";
 
+console.log(theme);
+
 const webpackConfig = {
   mode: isProd ? "production" : "development",
   devtool: isProd ? false : "cheap-module-source-map",
@@ -150,4 +152,5 @@ if (isProd) {
   webpackConfig.plugins.push(new Reload4Plugin());
 }
 
+console.log(webpackConfig);
 module.exports = webpackConfig;
