@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Island default theme",
   "dependencies": {
-    "@dogstudio/highway": "^2.0.8",
+    "@dogstudio/highway": "^2.1.0",
     "app-loading": "0.0.51",
     "dayjs": "^1.7.6",
     "github-markdown-css": "^2.10.0",
