@@ -1,6 +1,6 @@
 import "../scss/index.scss";
 import "app-loading/app-loading.min.css";
-import Highway from "@dogstudio/highway/build/es5/highway";
+import Highway from "@dogstudio/highway";
 import api from "./api";
 import { click } from "./utils";
 

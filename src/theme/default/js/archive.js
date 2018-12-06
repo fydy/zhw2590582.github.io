@@ -1,5 +1,5 @@
 import "../scss/archive.scss";
-import Highway from "@dogstudio/highway/build/es5/highway";
+import Highway from "@dogstudio/highway";
 import { getURLParameters, setTitle } from "./utils";
 import api from "./api";
 

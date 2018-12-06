@@ -1,4 +1,4 @@
-import Highway from "@dogstudio/highway/build/es5/highway";
+import Highway from "@dogstudio/highway";
 import fade from "./fade";
 
 export default class Transition extends Highway.Transition {

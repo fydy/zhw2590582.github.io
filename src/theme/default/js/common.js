@@ -2,7 +2,7 @@ import "normalize.css";
 import "../scss/common";
 import "github-markdown-css";
 import "gitting/dist/gitting.css";
-import Highway from "@dogstudio/highway/build/es5/highway";
+import Highway from "@dogstudio/highway";
 import Transition from "./transition";
 import VanillaTilt from "vanilla-tilt";
 import loading from 'app-loading';
