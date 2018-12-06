@@ -25,11 +25,6 @@ const H = new Highway.Core({
   }
 });
 
-Highway.update = function () {
-  H.detach();
-  H.attach();
-}
-
 VanillaTilt.init(document.querySelector(".logo .inner"));
 
 let scrollMenuView = false;

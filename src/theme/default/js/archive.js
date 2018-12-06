@@ -34,5 +34,4 @@ function creatArchive(data) {
     `;
   }).join('');
   $content.innerHTML = archiveHtml;
-  Highway.update();
 }

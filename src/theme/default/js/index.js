@@ -50,6 +50,5 @@ function creatPost(page, target) {
     target.insertAdjacentHTML("beforeend", postHtml);
     $loadStatus.innerHTML = `<div class="loadMore">加载更多</div>`;
     currentPage++;
-    Highway.update();
   })
 }
