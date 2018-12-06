@@ -11,6 +11,7 @@ before_script:
 
 script:
   - npm run travis
+  - npm run build
 
 branches:
   only:
